@@ -13,7 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using challenge.Repositories;
 using challenge.Services;
 
-namespace code_challenge
+namespace code_challenge.Tests.Integration.Server
 {
     public class Startup
     {
@@ -47,6 +47,7 @@ namespace code_challenge
             }
 
             app.UseMvc();
+
         }
     }
 }

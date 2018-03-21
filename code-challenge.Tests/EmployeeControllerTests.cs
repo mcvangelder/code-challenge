@@ -4,10 +4,11 @@ using challenge.Models;
 using challenge.Repositories;
 using challenge.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.TestHost;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Net.Http;
 
 namespace code_challenge.Tests
 {
@@ -17,6 +18,7 @@ namespace code_challenge.Tests
         private static EmployeeContext _context;
         private static Fakes.Logging.FakeLoggerFactory _logFactory = new Fakes.Logging.FakeLoggerFactory();
         private static EmployeeController _employeeController;
+        private static HttpClient _httpClient;
 
         [ClassInitialize]
         public static void InitializeClass(TestContext context)
