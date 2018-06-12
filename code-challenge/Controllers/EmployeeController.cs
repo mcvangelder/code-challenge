@@ -45,16 +45,14 @@ namespace challenge.Controllers
             return Ok(employee);
         }
 
-        [HttpPatch("{id}")]
-        public IActionResult UpdateEmployee(String id, [FromBody]JsonPatchDocument<Employee> employeePatch)
+        [HttpPut("{id}")]
+        public IActionResult UpdateEmployee(String id, [FromBody]Employee updatedEmployee)
         {
             _logger.LogDebug($"Recieved employee update request for '{id}'");
 
             var employee = _employeeService.GetById(id);
             if (employee == null)
                 return NotFound();
-
-            employeePatch.ApplyTo(employee);
 
             _employeeService.Update(employee);
 
