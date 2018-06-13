@@ -1,12 +1,12 @@
 # Mindex Coding Challenge
 ## What's Provided
-A simple [.NetCore 2.1](https://www.microsoft.com/net/download/dotnet-core/sdk-2.1.101) web application has been created and bootstrapped 
+A simple [.NetCore 2.1](https://www.microsoft.com/net/download/dotnet-core/sdk-2.1.300) web application has been created and bootstrapped 
 with data. The application contains information about all employees at a company. On application start-up, an in-memory 
 database is bootstrapped with a serialized snapshot of the database. While the application runs, the data may be
 accessed and mutated in the database without impacting the snapshot.
 
 ### How to Run
-You can run this by execute `dotnet run` command line or in [Visual Studio Community Edition](https://www.visualstudio.com/downloads/).
+You can run this by executing `dotnet run` on the command line or in [Visual Studio Community Edition](https://www.visualstudio.com/downloads/).
 
 
 ### How to Use
