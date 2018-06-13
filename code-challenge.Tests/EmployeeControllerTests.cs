@@ -104,12 +104,16 @@ namespace code_challenge.Tests.Integration
             var requestContent = new JsonSerialization().ToJson(employee);
 
             // Execute
-            var postRequestTask = _httpClient.PutAsync($"api/employee/{employee.EmployeeId}",
+            var putRequestTask = _httpClient.PutAsync($"api/employee/{employee.EmployeeId}",
                new StringContent(requestContent, Encoding.UTF8, "application/json"));
-            var postResponse = postRequestTask.Result;
+            var putResponse = putRequestTask.Result;
             
             // Assert
-            Assert.AreEqual(HttpStatusCode.OK, postResponse.StatusCode);
+            Assert.AreEqual(HttpStatusCode.OK, putResponse.StatusCode);
+            var newEmployee = putResponse.DeserializeContent<Employee>();
+
+            Assert.AreEqual(employee.FirstName, newEmployee.FirstName);
+            Assert.AreEqual(employee.LastName, newEmployee.LastName);
         }
 
         [TestMethod]

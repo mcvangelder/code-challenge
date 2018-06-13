@@ -55,7 +55,7 @@ namespace challenge.Controllers
 
             _employeeService.Replace(existingEmployee, newEmployee);
 
-            return Ok();
+            return Ok(newEmployee);
         }
     }
 }
