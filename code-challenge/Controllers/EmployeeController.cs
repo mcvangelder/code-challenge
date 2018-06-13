@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using challenge.Services;
 using challenge.Models;
-using Microsoft.AspNetCore.JsonPatch;
 
 namespace challenge.Controllers
 {
@@ -54,6 +53,7 @@ namespace challenge.Controllers
             if (employee == null)
                 return NotFound();
 
+            employee.EmployeeId = id;
             _employeeService.Update(employee);
 
             return Ok();

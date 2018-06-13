@@ -1,23 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using challenge.Data;
 using Microsoft.EntityFrameworkCore;
 using challenge.Repositories;
 using challenge.Services;
+using challenge.Controllers;
 
-namespace code_challenge.Tests.Integration.Server
+namespace code_challenge.Tests.Integration
 {
-    public class Startup
+    public class TestServerStartup
     {
-        public Startup(IConfiguration configuration)
+        public TestServerStartup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -38,14 +34,14 @@ namespace code_challenge.Tests.Integration.Server
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, EmployeeDataSeeder seeder)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, EmployeeDataSeeder seeder)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 seeder.Seed().Wait();
             }
-
+            
             app.UseMvc();
 
         }
