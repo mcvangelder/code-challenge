@@ -45,16 +45,15 @@ namespace challenge.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateEmployee(String id, [FromBody]Employee updatedEmployee)
+        public IActionResult ReplaceEmployee(String id, [FromBody]Employee newEmployee)
         {
             _logger.LogDebug($"Recieved employee update request for '{id}'");
 
-            var employee = _employeeService.GetById(id);
-            if (employee == null)
+            var existingEmployee = _employeeService.GetById(id);
+            if (existingEmployee == null)
                 return NotFound();
 
-            employee.EmployeeId = id;
-            _employeeService.Update(employee);
+            _employeeService.Replace(existingEmployee, newEmployee);
 
             return Ok();
         }

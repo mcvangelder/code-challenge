@@ -37,10 +37,9 @@ namespace challenge.Repositories
             return _employeeContext.SaveChangesAsync();
         }
 
-        public Employee Update(Employee employee)
+        public Employee Remove(Employee employee)
         {
-            _employeeContext.Update(employee);
-            return employee;
+            return _employeeContext.Remove(employee).Entity;
         }
     }
 }

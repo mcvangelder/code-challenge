@@ -40,15 +40,24 @@ namespace challenge.Services
             return null;
         }
 
-        public Employee Update(Employee employee)
+        public Employee Replace(Employee originalEmployee, Employee newEmployee)
         {
-            if(employee != null)
+            if(originalEmployee != null)
             {
-                _employeeRepository.Update(employee);
+                _employeeRepository.Remove(originalEmployee);
+                if (newEmployee != null)
+                {
+                    // ensure the original has been removed, otherwise EF will complain another entity w/ same id already exists
+                    _employeeRepository.SaveAsync().Wait();
+
+                    _employeeRepository.Add(newEmployee);
+                    // overwrite the new id with previous employee id
+                    newEmployee.EmployeeId = originalEmployee.EmployeeId;
+                }
                 _employeeRepository.SaveAsync().Wait();
             }
 
-            return employee;
+            return newEmployee;
         }
     }
 }

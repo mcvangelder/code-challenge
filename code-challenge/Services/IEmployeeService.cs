@@ -10,6 +10,6 @@ namespace challenge.Services
     {
         Employee GetById(String id);
         Employee Create(Employee employee);
-        Employee Update(Employee employee);
+        Employee Replace(Employee originalEmployee, Employee newEmployee);
     }
 }
